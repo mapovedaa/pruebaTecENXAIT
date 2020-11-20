@@ -4,7 +4,7 @@
 Este proyecto se realizo con el fin de presentar una prueba tecnica para INXAIT, en donde se pueden realizar sorteos con un numero mayor a 5 participantes.
 
 - [SQL que se uso para realizar pruebas](https://github.com/mapovedaa/pruebaTecEnxait/blob/master/prueba_tecnica_inxait.sql).
-- [modelo entidad relacion](https://github.com/mapovedaa/pruebaTecEnxait/blob/master/prueba_tecnica_inxait.sql).
+- [modelo entidad relacion](https://github.com/mapovedaa/pruebaTecEnxait/blob/master/modeloer_prueba.jpg).
 
 ## Desarrollo del proyecto
 

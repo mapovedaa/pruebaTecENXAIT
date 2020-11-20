@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUser;
 use App\User;
-use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -21,8 +21,9 @@ class UsersController extends Controller
                 $user->{$field} = $request->{$field};
             }
         }
+        $user->password = Hash::make($request->id_card);
         $user->save();
         
-        return redirect()->back()->with('status', 'Se ha registrado correctamente en el sorteo!');;
+        return redirect()->back()->with('status', 'Se ha registrado correctamente en el sorteo!');
     }
 }

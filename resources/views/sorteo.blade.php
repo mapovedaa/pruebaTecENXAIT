@@ -47,76 +47,47 @@
           <div class="col-12 my-auto">
             <div class="masthead-content text-white py-5 py-md-0">
               <h1 class="mb-3">Sorteo INXAIT</h1>
-              <p class="mb-2"> Usuarios registrados: <strong>{{ $registeredUsers }}</strong></p>
-              <p class="mb-2"> Sorteos realizados: <strong>{{ $refflesDone }}</strong></p>
+              <p class="mb-2"> Usuarios registrados: <strong>{{ sizeof($registeredUsers) }}</strong></p>
+              <p class="mb-2"> Sorteos realizados: <strong>{{ sizeof($refflesDone) }}</strong></p>
               <p class="mb-5">Registra tus datos y <strong>GANA</strong> grandes premios !</p>
               <div class="input-group input-group-newsletter">
-                {!! Form::open(['route' => 'users.create', 'method' => 'post', 'novalidate']) !!}
-                  <div class="input-group input-group-sm mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="card-sizing-sm">Cedula * </span>
-                    </div>
-                    {!! Form::text('id_card', null, ['class'=>'form-control', 'placeholder'=>'123456789', 'required']) !!}
-                  </div>                  
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="">Nombres y apellidos * </span>
-                    </div>
-                    {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Pepito', 'required']) !!}
-                    {!! Form::text('lastname', null, ['class'=>'form-control', 'placeholder'=>'Perez', 'required']) !!}
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="email-sizing-sm">Correo * </span>
-                    </div>
-                    {!! Form::email('email', null, ['class'=>'form-control','placeholder'=>'pepitoperez@correo.com', 'required']) !!}
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="phone-sizing-sm">Telefono * </span>
-                    </div>
-                    {!! Form::number('phone', null, ['min' => '3000000000', 'class'=>'form-control','placeholder'=>'3193903127', 'required']) !!}
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="town-sizing-sm">Ciudad * </span>
-                    </div>
-                    {!! Form::select('town_id', $departments_and_towns, null, ['class'=>'form-control', 'placeholder' => 'Seleccione una departamento...']) !!}
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    {!! Form::checkbox('habeasData', 1, false, ['class'=>'custom-control-input', 'id'=>'habeas_data']) !!}
-                    <label class="custom-control-label" for="habeas_data">Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en la política de protección de datos personales * </label>
-                  </div>
-                  <div class="input-group-append">
-                    {!! Form::submit('Registrame!',['class'=>'btn btn-secondary', 'id'=>'submit-button', 'required']) !!}
-                  </div>
-                {!! Form::close() !!}
+                @include('includes._form_user')
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-    <div class="social-icons">
-      <ul class="list-unstyled text-center mb-0">
-        <li class="list-unstyled-item">
-          <a href="https://twitter.com/mpoveda98" target="_blank">
-            <i class="fab fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-unstyled-item">
-          <a href="https://www.facebook.com/michaelandres.poveda" target="_blank">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </li>
-        <li class="list-unstyled-item">
-          <a href="https://instagram.com/michaelp.1" target="_blank">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-      </ul>
+
+    <div class="reffles-done">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Ganadores') }}</div>
+                <div class="card-body">
+                  <table class="table table-striped">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Fecha realizacion</th>
+                        <th scope="col">Cedula ganador</th>
+                        <th scope="col">Nombre ganador</th>
+                      </tr>
+                    </thead>
+                    @foreach ($refflesDone as $reffle)
+                        <tr>
+                          <td><span>{{$reffle->created_at}}</span></td>
+                          <td><span>{{$reffle->winningUser->id_card}}</span></td>
+                          <td><span>{{$reffle->winningUser->name}} {{$reffle->winningUser->lastname}}</span></td>
+                        </tr>
+                    @endforeach
+                  </table>
+                </div>
+              </div>
+          </div>
+      </div>
     </div>
+    
+    @include('includes.social_networks')
     
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

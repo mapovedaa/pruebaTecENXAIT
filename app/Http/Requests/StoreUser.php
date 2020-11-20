@@ -24,7 +24,7 @@ class StoreUser extends FormRequest
     public function rules()
     {
         return [
-            'id_card' => ['required','regex:/^[0-9]+$/u','unique:users'],
+            'id_card' => ['min:4','required','regex:/^[0-9]+$/u','unique:users'],
             'name' => ['required','regex:/^[a-zA-Z\']+$/u'],
             'lastname' => ['required','regex:/^[a-zA-Z]+$/u'],
             'email' => ['required','regex:/^[a-z0-9\.!#$%&\'*+\/=?^_`{|}~-]+@[a-z0-9-]+(?:\.[a-z0-9-]+)*$/u'],

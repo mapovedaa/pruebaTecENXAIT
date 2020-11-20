@@ -25,6 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
+        'password'
     ];
 
     /**
@@ -36,4 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function getParticipantsReffles()
+    {
+        return User::where('role',16)->get();
+    }
 }

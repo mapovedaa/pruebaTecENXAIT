@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'RefflesController@index');
 
 Route::get('/sorteo', 'RefflesController@index')->name('reffles.index');
+Route::get('/sorteo/create', 'RefflesController@create')->name('reffles.create');
 Route::post('/users/create','UsersController@store')->name('users.create');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'HomeController@index')->name('home');

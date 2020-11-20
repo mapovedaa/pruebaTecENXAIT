@@ -17,7 +17,6 @@ class CreateRefflesTable extends Migration
             $table->integer('id')->autoIncrement();
             $table->integer('winnig_user_id');
             $table->foreign('winnig_user_id')->references('id')->on('users');
-            $table->timestamp('reffled_at')->nullable();
             $table->timestamps();
         });
     }

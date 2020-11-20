@@ -11,15 +11,15 @@ class Town extends Model
         $departments_and_towns = [];
 
         if ( isset($department_id) ) {
-            # code...
+            $departments = Department::where('id', $department_id)->get();
         } else {
             $departments = Department::all();
-            
-            foreach ($departments as $key_department => $department) {
-                $towns = Town::where('department_id',$department->id)->get();
-                foreach ($towns as $key_town => $town) {
-                    $departments_and_towns[$department->name][$town->id] = $town->name;
-                }
+        }
+        
+        foreach ($departments as $key_department => $department) {
+            $towns = Town::where('department_id',$department->id)->get();
+            foreach ($towns as $key_town => $town) {
+                $departments_and_towns[$department->name][$town->id] = $town->name;
             }
         }
 

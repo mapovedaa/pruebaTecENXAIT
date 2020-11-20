@@ -22,9 +22,7 @@ class UsersController extends Controller
             }
         }
         $user->save();
-        dd($user);die;
-        //dd($post_request);die();
         
-        return redirect()->back(200);
+        return redirect()->back()->with('status', 'Se ha registrado correctamente en el sorteo!');;
     }
 }

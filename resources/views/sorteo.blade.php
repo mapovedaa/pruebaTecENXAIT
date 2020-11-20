@@ -27,6 +27,7 @@
     <div class="masthead">
       <div class="masthead-bg"></div>
       <div class="container h-100">
+        
         @if ($errors->any())
           <div class="alert alert-danger">
               <ul>
@@ -36,11 +37,18 @@
               </ul>
           </div>
         @endif
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            <p>{{ session('status') }}</p>
+          </div>
+        @endif
+
         <div class="row h-100">
           <div class="col-12 my-auto">
             <div class="masthead-content text-white py-5 py-md-0">
               <h1 class="mb-3">Sorteo INXAIT</h1>
-              <p class="mb-2"> Usuarios registrados: <strong>{{sizeof($registeredUsers)}}</strong></p>
+              <p class="mb-2"> Usuarios registrados: <strong>{{ $registeredUsers }}</strong></p>
+              <p class="mb-2"> Sorteos realizados: <strong>{{ $refflesDone }}</strong></p>
               <p class="mb-5">Registra tus datos y <strong>GANA</strong> grandes premios !</p>
               <div class="input-group input-group-newsletter">
                 {!! Form::open(['route' => 'users.create', 'method' => 'post', 'novalidate']) !!}

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'RefflesController@index');
+
 Route::get('/sorteo', 'RefflesController@index')->name('reffles.index');
 Route::post('/users/create','UsersController@store')->name('users.create');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('home');
